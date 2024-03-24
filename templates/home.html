@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static', filename='42913804.jpg') }}" class="d-block w-50 mx-auto" alt="Image 1" style="max-height: 1000px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Main container -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="{{ url_for('static', filename='Verdensmaals-white-baggrund-RGB.jpg') }}" class="card-img-top" alt="Image 4" style="width: 100%; height: auto;">
+        <div class="card-body">
+          <h5 class="card-title">FN Verdensmål</h5>
+          <p class="card-text">Ved at oprette tøjcontainere og fremme genanvendelse af tøj kan projektet reducere behovet for nyproduktion af tøj. Dette kan mindske den miljømæssige belastning ved tøjproduktion, herunder forbrug af vand, energi og kemikalier. </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="{{ url_for('static', filename='clothingcontainer.jpg') }}" class="card-img-top" alt="Image 5" style="width: 100%; height: auto;">
+        <div class="card-body">
+          <h5 class="card-title">Tøj donation</h5>
+          <p class="card-text">Ved at donere tøj i stedet for at smide det ud, reduceres mængden af affald, der ender på lossepladser. Dette bidrager til at mindske miljøpåvirkningen og fremmer bæredygtig affaldshåndtering.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="{{ url_for('static', filename='recycle.jpg') }}" class="card-img-top" alt="Image 6" style="width: 100%; height: auto;">
+        <div class="card-body">
+          <h5 class="card-title">Reducer miljøpåvirkning</h5>
+          <p class="card-text">Produktion af nyt tøj kan have betydelige miljømæssige konsekvenser, herunder forurening, vandforbrug og udledning af drivhusgasser. Ved at genbruge og genanvende tøj reduceres den negative miljøpåvirkning forbundet med tøjproduktion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

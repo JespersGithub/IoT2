@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+GPS Data
+{% endblock %}
+
+{% block content %}
+<!-- Content block -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Data</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar and other content if needed -->
+
+    <!-- Display GPS data on the map -->
+    <div>
+        <h2>GPS Data</h2>
+        <p>Last Updated: <span id="last-updated"></span></p>
+        <div id="map"></div>
+    </div>
+
+    <!-- Include Leaflet JS library -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([0, 0], 2);
+    
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    
+        // Function to add markers for GPS coordinates
+        function addMarker(coordinate) {
+            // Clear existing markers from the map
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+            
+            // Set the map view to the received coordinate and add a marker
+            map.setView(coordinate, 15);
+            L.marker(coordinate).addTo(map);
+        }
+    
+        // Function to update last updated time
+        function updateLastUpdated() {
+            document.getElementById('last-updated').innerText = new Date().toLocaleString();
+        }
+    
+        // Get GPS data from Flask and update map
+        function updateGPS() {
+    fetch('/gps_data')
+    .then(response => response.json())
+    .then(data => {
+        if (data.latitude && data.longitude) {
+            addMarker([data.latitude, data.longitude]);
+            updateLastUpdated();
+        } else {
+            console.log('No GPS data available');
+        }
+    })
+    .catch(error => console.error('Error fetching GPS data:', error));
+}
+
+    
+        // Update GPS data and map every 5 seconds
+        updateGPS();
+        setInterval(updateGPS, 5000);
+    </script>
+    
+</body>
+</html>
+{% endblock %}

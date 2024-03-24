@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+Kapacitet
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapacitet</title>
+</head>
+<body>
+    <h1>Distance Data Graph</h1>
+    <img src="data:image/png;base64, {{ plot_data }}" alt="Distance Graph">
+</body>
+</html>
+
+{% endblock %}
